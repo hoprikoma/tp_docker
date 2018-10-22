@@ -1,0 +1,26 @@
+version: '3.3'
+
+
+services:
+
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_DATABASE=docker
+
+  php:
+    build : 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PHP_EXTENSIONS=pdo_mysql
+    ports:
+      - 30000:80
+
+  adminer:
+    image: adminer
+    ports:
+      - 50000:8080
