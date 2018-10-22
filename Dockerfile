@@ -1,0 +1,3 @@
+FROM php:7.2-apache 
+LABEL maintener="Mathieu D"
+RUN useradd -G www-data -m mathieu && sed -i "s/DocumentRoot.*$/DocumentRoot \/home\/mathieu\/tp\//" $(grep -l DocumentRoot $(find /etc/apache2 -type f)) && sed -i "s/\<Directory \/var\/www.*$/Directory \/home\/mathieu\/tp\/\>/" $(grep -l "<Directory /var/www/>" $(find /etc/apache2 -type f)) && mkdir /home/mathieu/tp && chown www-data /home/mathieu/tp -Rf && chmod 775 -R /home/mathieu/tp && echo "<html><head><title>WIN</title></head><body><p>Test de page w
